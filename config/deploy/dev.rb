@@ -3,10 +3,9 @@
 #Import Dev Config
 require_relative 'config_dev'
 
-deployServer = fetch :deployServer;
-deployUser = fetch :deployUser;
-deployBranch = fetch :deployBranch;
-deployTo = fetch :deployTo;
+deployServer = fetch :deploy_server;
+deployUser = fetch :deploy_user;
+deployBranch = fetch :deploy_branch;
 
 #Define roles
 role :app, [deployServer]
@@ -20,9 +19,6 @@ role :db,  [deployServer]
 
 #Uncomment the line below to use the configured branch as default
 ask :branch, deployBranch
-
-#Deployment path
-set :deploy_to, deployTo
 
 # Custom SSH Options
 # Use ssh-agent to log on server

@@ -33,24 +33,23 @@ set :repo_url, 'git@github.com:Id4v/Id4v.git'
 
 # Default value for keep_releases is 5
 # Keep 3 Release on the remote
-set :keep_releases, :nbKeepRelease
 
 namespace :sf2 do
   desc 'Clear application cache'
   task :clear_cache do
     on roles(:app) do
-      execute "php #{:deployTo}/current/app/console cache:clear --env=dev";
-      execute "php #{:deployTo}/current/app/console cache:clear --env=prod";
+      execute "php #{deploy_to}/current/app/console cache:clear --env=dev";
+      execute "php #{deploy_to}/current/app/console cache:clear --env=prod";
     end
   end
   task :composer_install do
     on roles(:app) do
-      execute "cd #{:deployTo}/current/ && composer install";
+      execute "cd #{deploy_to}/current/ && composer install";
     end
   end
   task :publish_assets do
     on roles(:app) do
-      execute "cd #{:deployTo}/current/ && php app/console assets:install";
+      execute "cd #{deploy_to}/current/ && php app/console assets:install";
     end
   end
 end
@@ -58,7 +57,8 @@ end
 namespace :deploy do
   task :finishing do
     on roles(:app), in: :sequence, wait: 5 do
-      :tasksToRun.each {|task| puts "invoking #{task}"; invoke task }
+      tasksToRun = fetch :tasks_to_run;
+      tasksToRun.each {|task| puts "invoking #{task}"; invoke task }
     end
   end
 end
