@@ -5,5 +5,5 @@ require_relative "config_prod"
 #$deployServer = 'Ip'
 #$deployUser = 'deployUsername'
 #$deployTo = 'deployPath'
-$deployBranch = "dev"
-$tasksToRun = %w{sf2:composer_install sf2:clear_cache sf2:publish_assets}
+set :deployBranch , "dev"
+set :tasksToRun , %w{sf2:composer_install sf2:clear_cache sf2:publish_assets}
