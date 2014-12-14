@@ -12,9 +12,9 @@ namespace :sf1 do
 
     desc 'After Push task'
     task :after_push do
-        puts "a";
-        #invoke "sf1:permission"
-        #invoke "sf1:clear_cache"
+        puts "Executing Automatic After Push process"
+        invoke "sf1:permission"
+        invoke "sf1:clear_cache"
     end
 
     desc 'Clear cache for Symfony1 projects'
@@ -28,6 +28,16 @@ namespace :sf1 do
     task :permission do
         on roles(:web) do
             execute "cd #{deploy_to}/current/ && php symfony project:permissions"
+        end
+    end
+
+    desc 'Data dumps local DB and Data load to remote server'
+    task :migrate_datas do
+        run_locally do
+            execute "php symfony doctrine:data-dump"
+        end
+        on roles(:web)do
+            execure "php symfony doctrine:data-load"
         end
     end
 end

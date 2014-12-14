@@ -41,6 +41,6 @@ role :db,  %w{david@88.184.102.144}
 namespace :sf1 do
     desc 'After Push task'
     task :after_push do
-        puts "He"
+        puts "Executing Custom After Push process"
     end
 end
