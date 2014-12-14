@@ -1,3 +1,5 @@
+set :branch, "sf1"
+
 namespace :sf1 do
     desc 'Clear cache for Symfony1 projects'
     task :clear_cache do
