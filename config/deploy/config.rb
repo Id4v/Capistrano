@@ -1,5 +1,7 @@
-set :application, 'my_app_name'
-set :repo_url, ''
+if fetch(:project_type) == 'sf1'
+    require_relative("projects/tasks/sf1_tasks");
+elsif fetch(:project_type) == 'sf2'
+    require_relative("projects/tasks/sf2_tasks");
+end
 
-#Set the type of project you're deploying : sf1, sf2
-set :project_type, 'sf1'
+set :deploy_to, "/var/www/Test/"

@@ -1,15 +1,11 @@
 # config valid only for current version of Capistrano
 lock '3.3.3'
 
-#La config est déportée dans ce fichier
-require_relative("deploy/config")
+set :application, 'my_app_name'
+set :repo_url, 'git@github.com:Id4v/Capistrano.git'
 
-#NE PAS TOUCHER ... CHARGE LES TACHES PAR DEFAUT
-if fetch(:project_type) == 'sf1'
-    require_relative("deploy/projects/tasks/sf1_tasks");
-elsif fetch(:project_type) == 'sf2'
-    require_relative("deploy/projects/tasks/sf2_tasks");
-end
+#Set the type of project you're deploying : sf1, sf2
+set :project_type, 'sf1'
 
 
 # Default branch is :master

@@ -1,3 +1,5 @@
+require_relative("config")
+
 # Simple Role Syntax
 # ==================
 # Supports bulk-adding hosts to roles, the primary server in each group
@@ -34,3 +36,11 @@ role :db,  %w{david@88.184.102.144}
 #     auth_methods: %w(publickey password)
 #     # password: 'please use keys'
 #   }
+
+
+namespace :sf1 do
+    desc 'After Push task'
+    task :after_push do
+        puts "He"
+    end
+end
