@@ -12,7 +12,7 @@ namespace :sf1 do
 
     desc 'After Push task'
     task :after_push do
-        puts "Executing Automatic After Push process"
+        puts "Executing Sf1Tasks After Push process"
         invoke "sf1:permission"
         invoke "sf1:clear_cache"
     end

@@ -1,12 +1,12 @@
+require_relative("deploy/projectConfig")
 # config valid only for current version of Capistrano
 lock '3.3.3'
 
-set :application, 'my_app_name'
-set :repo_url, 'git@github.com:Id4v/Capistrano.git'
-
-#Set the type of project you're deploying : sf1, sf2
-set :project_type, 'sf1'
-
+if fetch(:project_type) == 'sf1'
+    require_relative("deploy/projects/tasks/sf1_tasks");
+elsif fetch(:project_type) == 'sf2'
+    require_relative("deploy/projects/tasks/sf2_tasks");
+end
 
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
@@ -37,5 +37,3 @@ set :project_type, 'sf1'
 
 # Default value for keep_releases is 5
 # set :keep_releases, 5
-
-
